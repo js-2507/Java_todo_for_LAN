@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My To-Do List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .priority-High { border-left: 5px solid #dc3545; }
+        .priority-Medium { border-left: 5px solid #ffc107; }
+        .priority-Low { border-left: 5px solid #0dcaf0; }
+    </style>
+</head>
+<body class="container mt-5">
+<h2 class="mb-4">To-Do List</h2>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-6">
+        <input type="text" id="taskInput" class="form-control" placeholder="Enter Task:">
+    </div>
+    <div class="col-md-3">
+        <select id="priorityInput" class="form-select">
+            <option value="High">High</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="Low">Low</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <button onclick="addTodo()" class="btn btn-primary w-100">Add Task</button>
+    </div>
+</div>
+
+<ul id="todoList" class="list-group">
+</ul>
+
+<script>
+    const API_URL = '/api/todos';
+
+    // 1. Fetch and display tasks
+    async function loadTodos() {
+        const response = await fetch(API_URL);
+        const todos = await response.json();
+        const listElement = document.getElementById('todoList');
+
+        listElement.innerHTML = todos.map(todo => `
+            <li class="list-group-item d-flex justify-content-between align-items-center priority-${todo.priority}">
+                <div>
+                    <strong>${todo.task}</strong>
+                    <span class="badge rounded-pill bg-dark ms-2">${todo.priority}</span>
+                </div>
+                <button onclick="deleteTodo(${todo.id})" class="btn btn-sm btn-success">Done</button>
+            </li>
+        `).join('');
+    }
+
+    // 2. Add a new task
+    async function addTodo() {
+        const task = document.getElementById('taskInput').value;
+        const priority = document.getElementById('priorityInput').value;
+
+        if (!task) return alert("Please enter a task!");
+
+        await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ task, priority, completed: false })
+        });
+
+        document.getElementById('taskInput').value = ''; // Clear input
+        loadTodos(); // Refresh list
+    }
+
+    // 3. Delete a task
+    async function deleteTodo(id) {
+        await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+        loadTodos(); // Refresh list
+    }
+
+    // Initial load
+    loadTodos();
+</script>
+</body>
+</html>
