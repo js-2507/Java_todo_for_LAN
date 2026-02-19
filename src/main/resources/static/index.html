@@ -42,7 +42,7 @@
         const todos = await response.json();
         const listElement = document.getElementById('todoList');
 
-        llistElement.innerHTML = todos.map(todo => `
+        listElement.innerHTML = todos.map(todo => `
     <li class="list-group-item d-flex justify-content-between align-items-center p-3 priority-${todo.priority}">
         <div style="word-break: break-word;" class="me-3">
             <strong class="d-block">${todo.task}</strong>
