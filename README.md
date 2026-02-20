@@ -1,6 +1,7 @@
 # Java To-Do List Service for LAN
 
-A modern Java + Spring Boot + JavaScript To-Do List application featuring priority sorting and a RESTful API.
+A modern Java + Spring Boot + JavaScript To-Do List application featuring priority sorting and a RESTful API.<br><br>
+Screenshot from use on a computer:<br><img width="1458" height="865" alt="todolist-pc-screenshot" src="https://github.com/user-attachments/assets/59c0741f-45bc-4059-ba08-516f0fcf0bf4" /><br><br>
 
 ## Features
 * **Priority Sorting**: Tasks are marked as High, Medium, or Low and are automatically sorted by priority.
