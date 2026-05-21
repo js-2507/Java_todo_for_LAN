@@ -2,7 +2,7 @@
 
 A modern Java + Spring Boot + JavaScript To-Do List application featuring priority sorting and a RESTful API.<br><br>
 Screenshot from use on a computer:<br><img width="1458" height="865" alt="todolist-pc-screenshot" src="https://github.com/user-attachments/assets/59c0741f-45bc-4059-ba08-516f0fcf0bf4" /><br><br>
-
+Screenshots from use on a mobile phone:<br><img width="300" height="650" alt="todo1" src="https://github.com/user-attachments/assets/50d3e80f-52ae-436f-98bb-e9fbbe83638e" />&emsp;<img width="300" height="650" alt="todo2" src="https://github.com/user-attachments/assets/61f9fc3e-9a7c-4480-b669-c81c421561aa" /><br><br>
 ## Features
 * **Priority Sorting**: Tasks are marked as High, Medium, or Low and are automatically sorted by priority.
 * **REST API**: Backend built with Java 25 and Spring Boot.
